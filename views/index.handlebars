@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            <h3 class="center-align">Nkondlo Ice creams</h3>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+    {{!-- <a href="/order">
+        <span class="new badge blue">{{order}}</span>
+        <i class="Medium material-icons right"> card_giftcard</i>
+    </a>
+    <a href="/order">
+        <span class="new badge blue">{{order}}</span>
+        <i class="Medium material-icons right"> card_giftcard</i>
+    </a> --}}
+    <div class="row">
+        <div class="center-align">
+            <p>choose your Cone, Flavour and Topping below </p>
+            <p class="error"> {{messages.error}}</p>
+            <p id="clear" class="sucess"> {{messages.sucess}}</p>
+            <p id="clear" class="update"> {{messages.update}}</p>
+
+            <a href="/order">
+                <span class="new badge blue">{{order}}</span>
+                <i class="Medium material-icons right"> card_giftcard</i>
+            </a>
+        </div>
+
+    </div>
+
+    <form action="ice-cream" method="post">
+        <div class="row ">
+            <div class="col-4 cone">
+                <p> How do you like your CONE? </p>
+                {{#each cones}}
+                <p>
+                    <label>
+                        <input name="container" {{price}} value={{name}} type="radio" {{checked}} />
+                        <span>{{name}} at : R{{price}}</span>
+                    </label>
+                </p>
+                {{/each}}
+            </div>
+
+
+            <div class="col-4">
+                <p> Your Flavour</p>
+                {{#each flavour}}
+                <p>
+                    <label>
+                        <input name="flavour" value={{name}} type="radio" {{checked}} />
+                        <span>{{name}} at : R{{price}}</span>
+                    </label>
+                </p>
+                {{/each}}
+            </div>
+
+            <div class="col-4">
+                <p> Your Toppin(s)</p>
+                {{#each topping}}
+                <p>
+                    <label>
+                        <input name="topping" value={{name}} type="checkbox" {{checked}} />
+                        <span>{{name}} at : R{{price}}</span>
+                    </label>
+                </p>
+                {{/each}}
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-2 total">Total :</div>
+            <div class="center-align">
+                {{!-- onclick="M.toast({html: 'Order placed', classes: 'rounded', inDuration: 500})" --}}
+                <button class="btn waves-effect waves-light" type="submit" name="action"> Order
+                    {{!-- <a onclick="M.toast({html: 'Order placed'})" class="btn">Order --}}
+                        <i class="Large material-icons right">room_service</i>
+                        {{!-- </a> --}}
+                </button>
+
+
+            </div>
+            <div class="col-4">
+                {{!-- <button class="btn waves-effect waves-light" type="submit" name="action">Cart --}}
+                    {{!-- <a href="/order">
+                        <span class="new badge blue">{{order}}</span>
+                        <i class="Medium material-icons right"> card_giftcard</i>
+                    </a> --}}
+                    {{!-- </button> --}}
+            </div>
+            <div class="col-2"></div>
+        </div>
+        {{!--
+        <button class="btn waves-effect waves-light" type="submit" name="action">order
+            <i class="material-icons right">room_service</i>
+        </button> --}}
+    </form>
+
+</div>
+
+</div>
+</div>
+
+<script>
+    let total = document.querySelector(".total");
+    let cone = document.querySelector(".cone");
+    cone.addEventListener("click", list => {
+        console.log("fuck it")
+        let price = list.target.attributes;
+        price = price[1]
+        if (price) {
+            console.log([price])
+            total.innerHTML = price
+        }
+
+        // const toppingCount = document.querySelectorAll('.topping:checked');
+        // toppingTotal = 0;
+        // toppingCount.forEach(check => {
+        //  toppingTotal += price;
+        //});
+        // total.innerHTML = iceFactory.getTotalAmount()
+    });
+    setTimeout(function () {
+        document.querySelector(".sucess").innerHTML = ""
+    }, 2000)
+    setTimeout(function () {
+        document.querySelector(".error").innerHTML = ""
+    }, 2000)
+    setTimeout(function () {
+        document.querySelector(".update").innerHTML = ""
+    }, 2000);
+</script>

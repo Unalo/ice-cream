@@ -1,0 +1,15 @@
+language: node_js
+
+env:
+  - DATABASE_URL=postgresql://postgres@localhost:5432/ice_cream_shop_test
+
+node_js:  
+  - 12
+
+before_script:
+  - psql -c 'create database  ice_cream_shop_test;' -U postgres
+  - psql -U postgres -d ice_cream_shop_test -a -f sql/db.sql
+  - psql -U postgres -d ice_cream_shop_test -a -f sql/data.sql
+
+services:
+  - postgresql

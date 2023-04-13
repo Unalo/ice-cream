@@ -1,0 +1,21 @@
+{
+  "name": "icecream_widget_with_mentors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "pg": "^8.7.1",
+    "chai": "^4.2.0",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6"
+  }
+}

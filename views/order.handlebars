@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<h3 class="center-align"> find your oder here</h3>
+
+<h5 class="center-align"> You have ordered </h5>
+<p id="clear" class="center-align"> {{messages.sucess}}</p>
+
+
+<ul class="collection">
+    {{#each total}}
+    <li class="collection-item avatar">
+        <a href="/edit/{{id}}">
+            1x {{flavour}} in a {{container}} with
+            {{#each toppings}}
+            {{name}}
+            {{/each}}
+            <br>
+            Amount Due : R {{total}}
+        </a>
+    </li>
+    {{/each}}
+    <li>
+
+    </li>
+</ul>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-3">
+        <a href="/clear">
+            <button class="btn waves-effect waves-light red" name="action">clear
+                <i class="material-icons right">delete_forever</i>
+            </button>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/">
+            <button class="btn waves-effect waves-light" name="action">ADD
+                <i class="material-icons right">add_box</i>
+            </button>
+        </a>
+    </div>
+    <div class="col-3"></div>
+
+</div>
+<script>
+    setTimeout(function () {
+        document.getElementById("clear").innerHTML = ""
+    }, 2000)
+    setTimeout(function () {
+        document.querySelector(".resertMessage").innerHTML = ""
+    }, 1000)
+</script>
+
+</html>
