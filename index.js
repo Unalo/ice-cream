@@ -3,14 +3,20 @@ const exphbs = require('express-handlebars');
 const flash = require('express-flash');
 const session = require('express-session');
 
-const pg = require("pg");
-const Pool = pg.Pool;
+
+const pgp = require('pg-promise')();
+
+// const pg = require("pg");
+// const Pool = pg.Pool;
 let iceCream = require('./ice-cream');
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://unalo:unalo123@localhost:5432/ice-cream-shop';
-const pool = new Pool({
-  connectionString
-});
+// const pool = new Pool({
+//   connectionString
+// });
+
+const db = pgp(connectionString);
+
 
 const app = express();
 const PORT = process.env.PORT || 3017;
@@ -35,14 +41,14 @@ app.use(session({
 
 app.use(flash());
 
-let iceFactory = iceCream(pool);
+let iceFactory = iceCream(db);
 
 app.get('/', async (req, res) => {
   let cones = await iceFactory.getContainer();
   let flavour = await iceFactory.getFlavour();
   let topping = await iceFactory.getTopping();
   let order = await iceFactory.getCardLenght();
-console.log(topping);
+  console.log(topping);
   res.render('index', {
     cones,
     flavour,
